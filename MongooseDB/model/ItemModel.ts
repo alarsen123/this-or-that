@@ -25,11 +25,11 @@ class ItemModel {
                 item_number_of_votes: Number,
                 item_percent_of_votes: Number,
                 item_rank: Number,
-            }, {collection: 'Items'}
+            }, {collection: 'items'}
         );
     }
     public createModel(): void {
-        this.model = mongooseConnection.model<IItemModel>("Items", this.schema);
+        this.model = mongooseConnection.model<IItemModel>("items", this.schema);
     }
     
     public retrieveAllItemsfromUniqueCategory(response:any, filter:Object){

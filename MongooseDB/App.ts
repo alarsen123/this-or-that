@@ -38,7 +38,19 @@ class App {
 
     router.get("/app/Items/", (req,res) =>{
       console.log('Query All items');
-      this.Items.retriveAllItemsfromAllCategories(res);
+      this.Items.retrieveAllItems(res);
+    });
+
+    router.get("/app/Items/:item_id" , (req,res) =>{
+        var id = req.params.item_id;
+        console.log("Query single item with id:" + id);
+        this.Items.retrieveOneItem(res,{item_id:id})
+    });
+
+    router.get("/app/Items/Category/:category_id" , (req,res) =>{
+        var id = req.params.category_id;
+        console.log("Query All items from a unique category_id: " + id);
+        this.Items.retrieveAllItemsfromUniqueCategory(res,{category_id:id});
     });
   
     router.post('/app/list/', (req, res) => {
