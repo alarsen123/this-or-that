@@ -52,6 +52,10 @@ class App {
         console.log("Query All items from a unique category_id: " + id);
         this.Items.retrieveAllItemsfromUniqueCategory(res,{category_id:id});
     });
+
+    router.post("/app/")
+
+
   
     router.post('/app/list/', (req, res) => {
       const id = crypto.randomBytes(16).toString("hex");
