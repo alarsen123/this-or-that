@@ -22,7 +22,7 @@ class CategoryModel {
                 category_name: String,
                 items : [ {
                     item_id: Number,
-            }],
+                }],
             }, {collection: 'Categories'}
         );
     }

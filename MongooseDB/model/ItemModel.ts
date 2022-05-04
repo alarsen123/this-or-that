@@ -32,7 +32,7 @@ class ItemModel {
         this.model = mongooseConnection.model<IItemModel>("Items", this.schema);
     }
     
-    public retriveAllItemsfromuniqueCategory(response:any, filter:Object){
+    public retrieveAllItemsfromUniqueCategory(response:any, filter:Object){
         var query = this.model.find(filter);
         query.exec((err,itemArray)=>{
             response.json(itemArray)
@@ -40,14 +40,14 @@ class ItemModel {
     }
 
       
-    public retriveAllItemsfromAllCategories(response:any){
+    public retrieveAllItems(response:any){
         var query = this.model.find({});
         query.exec((err,itemArray)=>{
             response.json(itemArray)
         });
     }
 
-    public retriveOneItem(response:any, filter:Object){
+    public retrieveOneItem(response:any, filter:Object){
         var query = this.model.findOne(filter);
         query.exec((err,itemArray) =>{
             response.json(itemArray)
