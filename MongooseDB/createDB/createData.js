@@ -1,4 +1,5 @@
-//db = db.getSiblingDB('toDoSample')
+db = db.getSiblingDB('test')
+
 db.createCollection('items')
 itemCollection = db.getCollection("items")
 itemCollection.remove({})
