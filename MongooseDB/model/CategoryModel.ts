@@ -23,12 +23,12 @@ class CategoryModel {
                 items : [ {
                     item_id: Number,
                 }],
-            }, {collection: 'Categories'}
+            }, {collection: 'categories'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<ICategoryModel>("Categories", this.schema);
+        this.model = mongooseConnection.model<ICategoryModel>("categories", this.schema);
     }
 
     public retrieveAllCategories(response:any): any {
