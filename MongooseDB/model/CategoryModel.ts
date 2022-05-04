@@ -1,0 +1,50 @@
+import Mongoose = require("mongoose");
+import {DataAccess} from '../DataAccess';
+import { ICategoryModel } from "../interfaces/ICategoryModel";
+import {IItemModel} from '../interfaces/IListModel';
+
+let mongooseConnection = DataAccess.mongooseConnection;
+let mongooseObj = DataAccess.mongooseInstance;
+
+class ListModel {
+    public schema:any;
+    public model:any;
+
+    public constructor() {
+        this.createSchema();
+        this.createModel();
+    }
+
+    public createSchema(): void {
+        this.schema = new Mongoose.Schema(
+            {
+                category_id : Number,
+                category_name: String,
+                items : [ {
+                    item_id: Number,
+            }],
+            }, {collection: 'Categories'}
+        );
+    }
+
+    public createModel(): void {
+        this.model = mongooseConnection.model<ICategoryModel>("Categories", this.schema);
+    }
+
+    public retrieveAllCategories(response:any): any {
+        var query = this.model.find({});
+        query.exec( (err, CategoryArray) => {
+            response.json(CategoryArray) ;
+        });
+    }
+
+    public retrieveCategoryCount(response:any): any {
+        console.log("retrieve Category Count ...");
+        var query = this.model.estimatedDocumentCount();
+        query.exec( (err, numberOfCategories) => {
+            console.log("number Of Categories: " + numberOfCategories);
+            response.json(numberOfCategories) ;
+        });
+    }
+}
+export {ListModel};

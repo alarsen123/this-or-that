@@ -1,5 +1,5 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from './../DataAccess';
+import {DataAccess} from '../DataAccess';
 import {ITaskModel} from '../interfaces/ITaskModel';
 import { STATUS_CODES } from "http";
 
