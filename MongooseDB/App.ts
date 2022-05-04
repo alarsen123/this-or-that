@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import {ListModel} from './model/ListModel';
-import {TaskModel} from './model/TaskModel';
+import {ItemModel} from './model/ItemModel';
+import {CategoryModel} from './model/CategoryModel';
 import * as crypto from 'crypto';
 
 // Creates and configures an ExpressJS web server.
@@ -9,16 +9,16 @@ class App {
 
   // ref to Express instance
   public expressApp: express.Application;
-  public Lists:ListModel;
-  public Tasks:TaskModel;
+  public Items:ItemModel;
+  public Category:CategoryModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
     this.expressApp = express();
     this.middleware();
     this.routes();
-    this.Lists = new ListModel();
-    this.Tasks = new TaskModel();
+    this.Items = new ItemModel();
+    this.Category = new CategoryModel();
   }
 
   // Configure Express middleware.
@@ -36,6 +36,11 @@ class App {
         this.Tasks.retrieveTasksCount(res, {listId: id});
     });
 
+    router.get("/app/Items/", (req,res) =>{
+      console.log('Query All items');
+      this.Items.retriveAllItemsfromAllCategories(res);
+    });
+  
     router.post('/app/list/', (req, res) => {
       const id = crypto.randomBytes(16).toString("hex");
       console.log(req.body);
