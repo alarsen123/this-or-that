@@ -73,8 +73,11 @@ body.light-theme{
 }
 
 .container{
-    display: flex;
+    max-width: 160rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
     justify-content: center;
+    display: flex;
 }
 
 .place-items-center{
