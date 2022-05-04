@@ -34,7 +34,7 @@ class CategoryModel {
     public retrieveAllCategories(response:any): any {
         var query = this.model.find({});
         query.exec( (err, CategoryArray) => {
-            response.json(CategoryArray) ;
+            response.json(CategoryArray);
         });
     }
 
@@ -43,7 +43,7 @@ class CategoryModel {
         var query = this.model.estimatedDocumentCount();
         query.exec( (err, numberOfCategories) => {
             console.log("number Of Categories: " + numberOfCategories);
-            response.json(numberOfCategories) ;
+            response.json(numberOfCategories);
         });
     }
 }

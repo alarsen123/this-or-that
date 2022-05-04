@@ -30,13 +30,12 @@ class App {
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
-
-    router.get("/app/Items/", (req,res) =>{
+    router.get("/app/Items/", (req,res) => {
       console.log('Query All items');
       this.Items.retrieveAllItems(res);
     });
 
-    router.get("/app/Items/:item_id" , (req,res) =>{
+    router.get("/app/Items/:item_id" , (req,res) => {
         var id = req.params.item_id;
         console.log("Query single item with id:" + id);
         this.Items.retrieveOneItem(res,{item_id:id})
@@ -60,6 +59,28 @@ class App {
         });
         res.send('{"id":"' + id + '"}');
     });
+
+    router.get("/app/categoryList/" , (req,res) => {
+      console.log('Query All categories');
+      this.Category.retrieveAllCategories(res);
+    });
+
+    router.post("/app/createCategory/", (req,res) => {
+      const id = crypto.randomBytes(16).toString("hex");
+      console.log(req.body);
+        var jsonObj = req.body;
+        jsonObj._id = id;
+        this.Category.model.create([jsonObj], (err) =>{
+          if(err){
+            console.log("object creating failed");
+          }
+        });
+        res.send('{"id":"' + id + '"}');
+    });
+    
+    
+
+
 
 
   

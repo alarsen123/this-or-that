@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/app/categoryList",
+					"raw": "http://localhost:8080/app/categoryList/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -41,35 +41,15 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/app/createCategory",
+					"raw": "localhost:8080/app/createCategory/",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"app",
-						"createCategory"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Category By ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/app/category/{{categoryId}}",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"app",
-						"category",
-						"{{categoryId}}"
+						"createCategory",
+						""
 					]
 				}
 			},
@@ -81,7 +61,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/app/Items",
+					"raw": "http://localhost:8080/app/Items/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -111,14 +91,15 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/app/createItem",
+					"raw": "localhost:8080/app/Items/",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"app",
-						"createItem"
+						"Items",
+						""
 					]
 				}
 			},
@@ -130,7 +111,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/app/item/{{itemId}}",
+					"raw": "http://localhost:8080/app/Items/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -138,8 +119,8 @@
 					"port": "8080",
 					"path": [
 						"app",
-						"item",
-						"{{itemId}}"
+						"Items",
+						"1"
 					]
 				}
 			},
