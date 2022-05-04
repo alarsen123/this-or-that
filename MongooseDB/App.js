@@ -51,6 +51,22 @@ var App = /** @class */ (function () {
             });
             res.send('{"id":"' + id + '"}');
         });
+        router.get("/app/categoryList/", function (req, res) {
+            console.log('Query All categories');
+            _this.Category.retrieveAllCategories(res);
+        });
+        router.post("/app/createCategory/", function (req, res) {
+            var id = crypto.randomBytes(16).toString("hex");
+            console.log(req.body);
+            var jsonObj = req.body;
+            jsonObj._id = id;
+            _this.Category.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log("object creating failed");
+                }
+            });
+            res.send('{"id":"' + id + '"}');
+        });
         // router.post('/app/list/', (req, res) => {
         //   const id = crypto.randomBytes(16).toString("hex");
         //   console.log(req.body);
