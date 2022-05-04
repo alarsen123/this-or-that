@@ -11,6 +11,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
     <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet'>
+    <title>This or That | Home</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon.png">
+    <!-- Remix icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Swiper.js styles -->
+    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css"/>
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body>
 <header>
@@ -41,7 +50,6 @@
     </ul>
   </div>
    <div class="list list-right">
-    btn place-tems-center
                 <button class="btn place-items-center" id="theme-toggle-btn">
                     <i class="ri-sun-line sun-icon"></i>
                     <i class="ri-moon-line moon-icon"></i>
@@ -69,6 +77,27 @@
   <div class="col-xs-12 center">
     <h2>Welcome to This or That</h2>
   </div>
+</div>
+
+ <!-- Search -->
+ <div class="search-form-container container" id="search-form-container">
+
+  <div class="form-container-inner">
+
+      <form action="" class="form">
+          <input class="form-input" type="text" placeholder="What are you looking for?">
+          <button class="btn form-btn" type="submit">
+              <i class="ri-search-line"></i>
+          </button>
+      </form>
+      <span class="form-note">Or press ESC to close.</span>
+
+  </div>
+
+  <button class="btn form-close-btn place-items-center" id="form-close-btn">
+      <i class="ri-close-line"></i>
+  </button>
+
 </div>
 
 </body>
