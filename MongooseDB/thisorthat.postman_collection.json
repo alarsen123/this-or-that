@@ -81,7 +81,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/app/itemList",
+					"raw": "http://localhost:8080/app/Items",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -89,7 +89,8 @@
 					"port": "8080",
 					"path": [
 						"app",
-						"itemList"
+						"Items",
+						""
 					]
 				}
 			},
