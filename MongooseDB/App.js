@@ -5,7 +5,6 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var ItemModel_1 = require("./model/ItemModel");
 var CategoryModel_1 = require("./model/CategoryModel");
-var crypto = require("crypto");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -39,46 +38,22 @@ var App = /** @class */ (function () {
             console.log("Query All items from a unique category_id: " + id);
             _this.Items.retrieveAllItemsfromUniqueCategory(res, { category_id: id });
         });
-        router.post("/app/Items/", function (req, res) {
-            var id = crypto.randomBytes(16).toString("hex");
+        router.post("/app/Items/:item_name/:category_id", function (req, res) {
             console.log(req.body);
             var jsonObj = req.body;
-            jsonObj._id = id;
-            _this.Items.model.create([jsonObj], function (err) {
-                if (err) {
-                    console.log("object creating fialed");
-                }
+            jsonObj.item_name = req.params.item_name;
+            jsonObj.category_id = req.params.category_id;
+            var doc = new _this.Items.model(jsonObj);
+            console.log("I am entering this:" + doc);
+            doc.save(function (err) {
+                console.log("object creation failed");
             });
-            res.send('{"id":"' + id + '"}');
+            res.send(jsonObj);
         });
         router.get("/app/categoryList/", function (req, res) {
             console.log('Query All categories');
             _this.Category.retrieveAllCategories(res);
         });
-        router.post("/app/createCategory/", function (req, res) {
-            var id = crypto.randomBytes(16).toString("hex");
-            console.log(req.body);
-            var jsonObj = req.body;
-            jsonObj._id = id;
-            _this.Category.model.create([jsonObj], function (err) {
-                if (err) {
-                    console.log("object creating failed");
-                }
-            });
-            res.send('{"id":"' + id + '"}');
-        });
-        // router.post('/app/list/', (req, res) => {
-        //   const id = crypto.randomBytes(16).toString("hex");
-        //   console.log(req.body);
-        //     var jsonObj = req.body;
-        //     jsonObj.listId = id;
-        //     this.Lists.model.create([jsonObj], (err) => {
-        //         if (err) {
-        //             console.log('object creation failed');
-        //         }
-        //     });
-        //     res.send('{"id":"' + id + '"}');
-        // });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/images', express.static(__dirname + '/img'));

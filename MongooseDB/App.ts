@@ -47,17 +47,17 @@ class App {
         this.Items.retrieveAllItemsfromUniqueCategory(res,{category_id:id});
     });
 
-    router.post("/app/Items/",(req,res) => {
-      const id = crypto.randomBytes(16).toString("hex");
+    router.post("/app/Items/:item_name/:category_id",(req,res) => {
       console.log(req.body);
         var jsonObj = req.body;
-        jsonObj._id = id;
-        this.Items.model.create([jsonObj], (err) => {
-          if(err){
-            console.log("object creating fialed");
-          }
+        jsonObj.item_name = req.params.item_name;
+        jsonObj.category_id = req.params.category_id;
+        let doc = new this.Items.model(jsonObj);
+        console.log("I am entering this:" + doc)
+        doc.save((err)=>{
+          console.log("object creation failed");
         });
-        res.send('{"id":"' + id + '"}');
+        res.send(jsonObj);
     });
 
     router.get("/app/categoryList/" , (req,res) => {
@@ -65,40 +65,7 @@ class App {
       this.Category.retrieveAllCategories(res);
     });
 
-    router.post("/app/createCategory/", (req,res) => {
-      const id = crypto.randomBytes(16).toString("hex");
-      console.log(req.body);
-        var jsonObj = req.body;
-        jsonObj._id = id;
-        this.Category.model.create([jsonObj], (err) =>{
-          if(err){
-            console.log("object creating failed");
-          }
-        });
-        res.send('{"id":"' + id + '"}');
-    });
     
-    
-
-
-
-
-  
-    // router.post('/app/list/', (req, res) => {
-    //   const id = crypto.randomBytes(16).toString("hex");
-    //   console.log(req.body);
-    //     var jsonObj = req.body;
-    //     jsonObj.listId = id;
-    //     this.Lists.model.create([jsonObj], (err) => {
-    //         if (err) {
-    //             console.log('object creation failed');
-    //         }
-    //     });
-    //     res.send('{"id":"' + id + '"}');
-    // });
-
-
-
 
     this.expressApp.use('/', router);
 
