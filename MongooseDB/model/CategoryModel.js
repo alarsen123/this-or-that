@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.CategoryModel = void 0;
 var Mongoose = require("mongoose");
-var DataAccess_1 = require("../DataAccess");
+var DataAccess_1 = require("./../DataAccess");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
 var mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
 var CategoryModel = /** @class */ (function () {
