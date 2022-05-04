@@ -1,12 +1,12 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../DataAccess';
-import {ITaskModel} from '../interfaces/ITaskModel';
+import {IItemModel} from '../interfaces/IItemModel';
 import { STATUS_CODES } from "http";
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
-class TaskModel {
+class ItemModel {
     public schema:any;
     public innerSchema:any;
     public model:any;
@@ -19,48 +19,31 @@ class TaskModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                listId: Number,
-                tasks: [
-                    {
-                        description: String,
-                        taskId: Number,
-                        shared: String,
-                        status: String
-                    }        
-                ]
-            }, {collection: 'tasks'}
+                item_id: Number,
+                category_id: Number,
+                item_name: String,
+                item_number_of_votes: Number,
+                item_percent_of_votes: Number,
+                item_rank: Number,
+            }, {collection: 'Items'}
         );
     }
-
     public createModel(): void {
-        this.model = mongooseConnection.model<ITaskModel>("Task", this.schema);
+        this.model = mongooseConnection.model<IItemModel>("Items", this.schema);
     }
     
-    public retrieveTasksDetails(response:any, filter:Object) {
-        var query = this.model.findOne(filter);
-        query.exec( (err, itemArray) => {
-            response.json(itemArray);
+    public retriveAllItemsfromCategory(response:any, filter:Object){
+        var query = this.model.find(filter);
+        query.exec((err,itemArray)=>{
+            response.json(itemArray)
         });
     }
 
-    public retrieveTasksCount(response:any, filter:Object) {
+    public retriveOneItem(response:any, filter:Object){
         var query = this.model.findOne(filter);
-        query.exec( (err, innerTaskList) => {
-            if (err) {
-                console.log('error retrieving count');
-            }
-            else {
-                if (innerTaskList == null) {
-                    response.status(404);
-                    response.json('{count: -1}');
-                }
-                else {
-                    console.log('number of tasks: ' + innerTaskList.tasks.length);
-                    response.json('{count:' + innerTaskList.tasks.length + '}');
-                }
-            }
+        query.exec((err,itemArray) =>{
+            response.json(itemArray)
         });
     }
-
 }
-export {TaskModel};
+export {ItemModel};

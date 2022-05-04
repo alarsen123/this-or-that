@@ -1,12 +1,12 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../DataAccess';
-import { ICategoryModel } from "../interfaces/ICategoryModel";
-import {IItemModel} from '../interfaces/IListModel';
+import {ICategoryModel} from "../interfaces/ICategoryModel";
+
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
-class ListModel {
+class CategoryModel {
     public schema:any;
     public model:any;
 
@@ -47,4 +47,4 @@ class ListModel {
         });
     }
 }
-export {ListModel};
+export {CategoryModel};
