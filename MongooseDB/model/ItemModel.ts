@@ -32,8 +32,16 @@ class ItemModel {
         this.model = mongooseConnection.model<IItemModel>("Items", this.schema);
     }
     
-    public retriveAllItemsfromCategory(response:any, filter:Object){
+    public retriveAllItemsfromuniqueCategory(response:any, filter:Object){
         var query = this.model.find(filter);
+        query.exec((err,itemArray)=>{
+            response.json(itemArray)
+        });
+    }
+
+      
+    public retriveAllItemsfromAllCategories(response:any){
+        var query = this.model.find({});
         query.exec((err,itemArray)=>{
             response.json(itemArray)
         });
