@@ -47,20 +47,19 @@ class App {
         this.Items.retrieveAllItemsfromUniqueCategory(res,{category_id:id});
     });
 
-    router.post("/app/Items/:item_name/:category_id",(req,res) => {
+    router.post("/app/Items/",(req,res) => {
+      const id = crypto.randomBytes(16).toString("hex");
       console.log(req.body);
         var jsonObj = req.body;
-        jsonObj.item_name = req.params.item_name;
-        jsonObj.category_id = req.params.category_id;
-        let doc = new this.Items.model(jsonObj);
-        console.log("I am entering this:" + doc)
-        doc.save((err)=>{
-          console.log("object creation failed");
+        this.Items.model.create([jsonObj], (err) => {
+          if (err) {
+            console.log('object creation failed');
+          }
         });
-        res.send(jsonObj);
+        res.send('{"id":"' + id + '"}');
     });
 
-    router.get("/app/categoryList/" , (req,res) => {
+    router.get("/app/categories/" , (req,res) => {
       console.log('Query All categories');
       this.Category.retrieveAllCategories(res);
     });
