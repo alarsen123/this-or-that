@@ -5,6 +5,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var ItemModel_1 = require("./model/ItemModel");
 var CategoryModel_1 = require("./model/CategoryModel");
+var crypto = require("crypto");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -38,19 +39,26 @@ var App = /** @class */ (function () {
             console.log("Query All items from a unique category_id: " + id);
             _this.Items.retrieveAllItemsfromUniqueCategory(res, { category_id: id });
         });
-        router.post("/app/Items/:item_name/:category_id", function (req, res) {
+        router.get("/app/standings/", function (req, res) {
+            console.log('Query Top 10 Most voted');
+            _this.Items.retrieve10mostvoted(res);
+        });
+        router.get("/app/randomQuestion/", function (req, res) {
+            console.log('Query A random question');
+            _this.Items.retrieveRandomQuestion(res);
+        });
+        router.post("/app/Items/", function (req, res) {
+            var id = crypto.randomBytes(16).toString("hex");
             console.log(req.body);
             var jsonObj = req.body;
-            jsonObj.item_name = req.params.item_name;
-            jsonObj.category_id = req.params.category_id;
-            var doc = new _this.Items.model(jsonObj);
-            console.log("I am entering this:" + doc);
-            doc.save(function (err) {
-                console.log("object creation failed");
+            _this.Items.model.create([jsonObj], function (err) {
+                if (err) {
+                    console.log('object creation failed');
+                }
             });
-            res.send(jsonObj);
+            res.send('{"id":"' + id + '"}');
         });
-        router.get("/app/categoryList/", function (req, res) {
+        router.get("/app/categories/", function (req, res) {
             console.log('Query All categories');
             _this.Category.retrieveAllCategories(res);
         });

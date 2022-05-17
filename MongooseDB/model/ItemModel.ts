@@ -38,6 +38,25 @@ class ItemModel {
             response.json(itemArray)
         });
     }
+    public retrieve10mostvoted(response:any){
+        var query = this.model.find({});
+        query.sort({"item_number_of_votes": -1});
+        query.limit(10);
+        
+        query.exec((err,itemArray)=>{
+            response.json(itemArray)
+        });
+    }
+
+    public retrieveRandomQuestion(response:any){
+        var randomnum1 = Math.floor(Math.random() * 20) +1;
+        var randomnum2 = Math.floor(Math.random() * randomnum1) + 1;
+        var query = this.model.find({"item_id": randomnum1}, {"item_id": randomnum2});
+
+        query.exec((err,itemArray)=>{
+            response.json(itemArray)
+        });
+    }
 
       
     public retrieveAllItems(response:any){

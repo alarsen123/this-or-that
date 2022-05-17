@@ -47,6 +47,15 @@ class App {
         this.Items.retrieveAllItemsfromUniqueCategory(res,{category_id:id});
     });
 
+    router.get("/app/standings/" , (req,res) => {
+      console.log('Query Top 10 Most voted');
+      this.Items.retrieve10mostvoted(res);
+    });
+    router.get("/app/randomQuestion/" , (req,res) => {
+      console.log('Query A random question');
+      this.Items.retrieveRandomQuestion(res);
+    });
+
     router.post("/app/Items/",(req,res) => {
       const id = crypto.randomBytes(16).toString("hex");
       console.log(req.body);

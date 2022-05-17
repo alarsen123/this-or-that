@@ -29,6 +29,22 @@ var ItemModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
+    ItemModel.prototype.retrieve10mostvoted = function (response) {
+        var query = this.model.find({});
+        query.sort({ "item_number_of_votes": -1 });
+        query.limit(10);
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
+    ItemModel.prototype.retrieveRandomQuestion = function (response) {
+        var randomnum1 = Math.floor(Math.random() * 20) + 1;
+        var randomnum2 = Math.floor(Math.random() * randomnum1) + 1;
+        var query = this.model.find({ "item_id": randomnum1 }, { "item_id": randomnum2 });
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
     ItemModel.prototype.retrieveAllItems = function (response) {
         var query = this.model.find({});
         query.exec(function (err, itemArray) {
