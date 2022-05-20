@@ -263,9 +263,15 @@ body.light-theme{
 .center-img {
     display: flex;
     justify-content: center;
-    }
+}
 
 .center-text{
     display: flex;
     justify-content: center;
+}
+
+.column {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
