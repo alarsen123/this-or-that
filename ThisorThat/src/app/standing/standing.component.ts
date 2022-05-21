@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemsClass } from '../items-class';
+import { ThisorthatService } from '../thisorthat.service';
+
 
 @Component({
   selector: 'app-standing',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StandingComponent implements OnInit {
 
-  constructor() { }
+  results: Array<ItemsClass> = [];
+  constructor(private apiService: ThisorthatService) { }
 
   ngOnInit(): void {
+    this.apiService.getStandings().subscribe((result: ItemsClass[]) =>{
+      this.results = result;
+      console.log("Standings results: " + JSON.stringify(result));
+    });
   }
+  
 
 }
