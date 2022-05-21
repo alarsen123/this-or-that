@@ -38,9 +38,16 @@ var ItemModel = /** @class */ (function () {
         });
     };
     ItemModel.prototype.retrieveRandomQuestion = function (response) {
-        var randomnum1 = Math.floor(Math.random() * 20) + 1;
+        var num_items = 20;
+        var randomnum1 = Math.floor(Math.random() * num_items) + 1;
         var randomnum2 = Math.floor(Math.random() * randomnum1) + 1;
-        var query = this.model.find({ "item_id": randomnum1 }, { "item_id": randomnum2 });
+        if (randomnum1 == randomnum2) {
+            randomnum2++;
+            if (randomnum2 > num_items) {
+                randomnum2 = 1;
+            }
+        }
+        var query = this.model.find({ $or: [{ "item_id": randomnum1 }, { "item_id": randomnum2 }] });
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
