@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ThisorthatService } from '../thisorthat.service';
 
 @Component({
   selector: 'app-daily-question',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DailyQuestionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private dailyQuestionService: ThisorthatService) { }
 
   ngOnInit(): void {
+    this.dailyQuestionService.getRandomQuestion().subscribe((result: any) => 
+    {
+      console.log('result' + JSON.stringify(result));
+    });
   }
 
 }
