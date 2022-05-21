@@ -6,9 +6,10 @@ import { ItemComponent } from './item/item.component';
 import { DailyQuestionComponent } from './daily-question/daily-question.component';
 import { StandingComponent } from './standing/standing.component';
 import { RandomQuestionComponent } from './random-question/random-question.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: '', component: AppComponent},
+  {path: '', component: HomeComponent},
   {path: 'Category', component:CategoryComponent},
   {path: 'Items', component: ItemComponent},
   {path: 'dailyquestion', component:DailyQuestionComponent},

@@ -1,100 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Alex Larsen, Hoang Do, Jiajin Koh, Ryan Bush">
-    <title>This or That | Home</title>
-    <link rel="icon" type="image/svg" sizes="32x32" href="./pages/img/this-or-that-logo.svg">
-    <!-- Import bootstrap css-->   
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <!-- Remix icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="./pages/assets/css/main.css">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="author" content="Alex Larsen, Hoang Do, Jiajin Koh, Ryan Bush">
+      <title>This or That | Home</title>
+      <base href="/">
+      <link rel="icon" type="image/svg" sizes="32x32" href="./pages/img/this-or-that-logo.svg">
+      <!-- Import bootstrap css-->   
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-</head>
-<header>
-  <header class="header" id="header">
+  </head>
 
-    <nav class="navbar container">
-        <a href="./pages/index.html">
-            <h2 class="logo">This or That</h2>
-        </a>
+  <body>
+    <app-root></app-root>
 
-        <!-- <div class="menu" id="menu">
-            <ul class="list">
-                <li class="list-item">
-                    <a href="#" class="list-link current">Home</a>
-                </li>
-                <li class="list-item">
-                    <a href="#" class="list-link">Daily Questions</a>
-                </li>
-                <li class="list-item">
-                    <a href="#" class="list-link">Random Questions</a>
-                </li>
-                <li class="list-item">
-                    <a href="#" class="list-link">Categories</a>
-                </li>
-                <li class="list-item screen-lg-hidden">
-                    <a href="./pages/signin.html" class="list-link">Sign in</a>
-                </li>
-                <li class="list-item screen-lg-hidden">
-                    <a href="./pages/signup.html" class="list-link">Sign up</a>
-                </li>
-            </ul>
-        </div> -->
-
-        <div class="list list-right">
-          <ul class="list">
-            <li class="list-item">
-                <a class="nav-link" routerLink="" routerLinkActive="active">Home</a>
-            </li>
-            <li class="list-item">
-                <a class="nav-link" routerLink="/daily-questions" routerLinkActive="active">Daily Questions</a>
-            </li>
-            <li class="list-item">
-                <a class="nav-link" routerLink="/item" routerLinkActive="active">Random Questions</a>
-            </li>
-            <li class="list-item">
-                <a class="nav-link" routerLink="/catergory" routerLinkActive="active">Categories</a>
-            </li>
-            <li class="list-item">
-              <a class="list-link" routerLink="/standing" routerLinkActive="active">Standings</a>
-            </li>
-            <li class="list-item screen-lg-hidden">
-                <a href="./pages/signin.html" class="list-link">Sign in</a>
-            </li>
-            <li class="list-item screen-lg-hidden">
-                <a href="./pages/signup.html" class="list-link">Sign up</a>
-            </li>
-          </ul>
-
-            <button class="btn place-items-center" id="theme-toggle-btn">
-                <i class="ri-sun-line sun-icon"></i>
-                <i class="ri-moon-line moon-icon"></i>
-            </button>
-
-            <button class="btn place-items-center" id="search-icon">
-                <i class="ri-search-line"></i>
-            </button>
-
-            <!-- <button class="btn place-items-center screen-lg-hidden menu-toggle-icon" id="menu-toggle-icon">
-                <i class="ri-menu-3-line open-menu-icon"></i>
-                <i class="ri-close-line close-menu-icon"></i>
-            </button> -->
-
-        </div>
-
-    </nav>
-
-</header>
-
-<body>
-  <app-root></app-root>
-  <!--Import bootstrap js-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  <script src="./pages/assets/js/main.js"></script>
-</body>
+    <!--Import bootstrap js-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
 </html>
