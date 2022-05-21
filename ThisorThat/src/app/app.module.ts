@@ -7,6 +7,7 @@ import { CategoryComponent } from './category/category.component';
 import { DailyQuestionComponent } from './daily-question/daily-question.component';
 import { StandingComponent } from './standing/standing.component';
 import { ItemComponent } from './item/item.component';
+import { RandomQuestionComponent } from './random-question/random-question.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ItemComponent } from './item/item.component';
     CategoryComponent,
     DailyQuestionComponent,
     StandingComponent,
-    ItemComponent
+    ItemComponent,
+    RandomQuestionComponent
   ],
   imports: [
     BrowserModule,

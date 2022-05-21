@@ -5,13 +5,15 @@ import { CategoryComponent } from './category/category.component';
 import { ItemComponent } from './item/item.component';
 import { DailyQuestionComponent } from './daily-question/daily-question.component';
 import { StandingComponent } from './standing/standing.component';
+import { RandomQuestionComponent } from './random-question/random-question.component';
 
 const routes: Routes = [
   {path: '', component: AppComponent},
-  {path: 'category', component:CategoryComponent},
-  {path: 'item', component: ItemComponent},
+  {path: 'Category', component:CategoryComponent},
+  {path: 'Items', component: ItemComponent},
   {path: 'dailyquestion', component:DailyQuestionComponent},
-  {path: 'standing', component:StandingComponent}
+  {path: 'standings', component:StandingComponent},
+  {path: 'randomQuestion', component:RandomQuestionComponent}
 ];
 
 @NgModule({
