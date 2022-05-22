@@ -1,1 +1,16 @@
-<p>item works!</p>
+<h3 class="panel-heading">Items</h3>
+
+<div *ngFor="let result of results; let i = index">
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <h4 class="panel-heading">
+    <a routerLink={{link(i)}} routerLinkActive="active">{{result.item_name}}</a>
+    </h4>
+    <div class="panel-body">
+    <p>{{result.item_number_of_votes}}</p>
+    <p>{{result.item_percent_of_votes}}</p>
+    <p>{{result.item_rank}}</p>
+    </div>
+</div>
+</div>
