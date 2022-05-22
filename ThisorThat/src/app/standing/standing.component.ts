@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemsClass } from '../items-class';
+import { ItemClass } from '../item-class';
 import { ThisorthatService } from '../thisorthat.service';
 
 
@@ -10,11 +10,11 @@ import { ThisorthatService } from '../thisorthat.service';
 })
 export class StandingComponent implements OnInit {
 
-  results: Array<ItemsClass> = [];
+  results: Array<ItemClass> = [];
   constructor(private apiService: ThisorthatService) { }
 
   ngOnInit(): void {
-    this.apiService.getStandings().subscribe((result: ItemsClass[]) =>{
+    this.apiService.getStandings().subscribe((result: ItemClass[]) =>{
       this.results = result;
       console.log("Standings results: " + JSON.stringify(result));
     });

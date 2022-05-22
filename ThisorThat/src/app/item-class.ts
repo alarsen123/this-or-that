@@ -1,4 +1,4 @@
-export interface ItemsClass{
+export interface ItemClass{
     item_id: number;
     category_id: number;
     item_name: string;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemsClass } from '../items-class';
+import { ItemClass } from '../item-class';
 import { ThisorthatService } from '../thisorthat.service';
 
 @Component({
@@ -9,11 +9,11 @@ import { ThisorthatService } from '../thisorthat.service';
 })
 export class RandomQuestionComponent implements OnInit {
 
-  results: Array<ItemsClass> = [];
+  results: Array<ItemClass> = [];
   constructor(private apiService: ThisorthatService) { }
 
   ngOnInit(): void {
-    this.apiService.getRandomQuestion().subscribe((result: ItemsClass[]) =>{
+    this.apiService.getRandomQuestion().subscribe((result: ItemClass[]) =>{
       this.results = result;
       console.log("Random question results: " + JSON.stringify(result));
     });
