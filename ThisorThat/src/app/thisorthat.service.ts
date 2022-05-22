@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest} from '@angular/common/http';
-import { ItemsClass } from './items-class';
+import { ItemClass } from './item-class';
 import { CategoryClass } from './category-class';
 
 @Injectable({
@@ -15,22 +15,22 @@ export class ThisorthatService {
    }
 
    getItems() {
-     return this.http.get<ItemsClass[]>(this.hostUrl +"/app/Items.json" );
+     return this.http.get<ItemClass[]>(this.hostUrl +"/app/Items.json" );
    }
    getItem(id:number){
      return this.http.get<any>(this.hostUrl + "/app/Items/" + id + ".json");
    }
 
    getRandomQuestion(){
-    return this.http.get<ItemsClass[]>(this.hostUrl +"/app/randomQuestion.json" );
+    return this.http.get<ItemClass[]>(this.hostUrl +"/app/randomQuestion.json" );
    }
 
    getStandings(){
-    return this.http.get<ItemsClass[]>(this.hostUrl +"/app/standings.json" );
+    return this.http.get<ItemClass[]>(this.hostUrl +"/app/standings.json" );
    }
 
    getItemsFromUniqueCategory(id:number){
-    return this.http.get<ItemsClass[]>(this.hostUrl + "/app/Items/Category/" + id + ".json");
+    return this.http.get<ItemClass[]>(this.hostUrl + "/app/Items/Category/" + id + ".json");
    }
 
    getCategories() {
