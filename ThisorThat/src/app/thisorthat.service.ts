@@ -8,32 +8,32 @@ import { CategoryClass } from './category-class';
 })
 export class ThisorthatService {
 
-  hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {
 
    }
 
    getItems() {
-     return this.http.get<ItemClass[]>(this.hostUrl +"/app/Items.json" );
+     return this.http.get<ItemClass[]>(this.hostUrl +"/app/Items" );
    }
    getItem(id:number){
-     return this.http.get<any>(this.hostUrl + "/app/Items/" + id + ".json");
+     return this.http.get<any>(this.hostUrl + "/app/Items/" + id);
    }
 
    getRandomQuestion(){
-    return this.http.get<ItemClass[]>(this.hostUrl +"/app/randomQuestion.json" );
+    return this.http.get<ItemClass[]>(this.hostUrl +"/app/randomQuestion" );
    }
 
    getStandings(){
-    return this.http.get<ItemClass[]>(this.hostUrl +"/app/standings.json" );
+    return this.http.get<ItemClass[]>(this.hostUrl +"/app/standings" );
    }
 
    getItemsFromUniqueCategory(id:number){
-    return this.http.get<ItemClass[]>(this.hostUrl + "/app/Items/Category/" + id + ".json");
+    return this.http.get<ItemClass[]>(this.hostUrl + "/app/Items/Category/" + id);
    }
 
    getCategories() {
-    return this.http.get<CategoryClass[]>(this.hostUrl +"/app/categories.json" );
+    return this.http.get<CategoryClass[]>(this.hostUrl +"/app/categories" );
    }
 }

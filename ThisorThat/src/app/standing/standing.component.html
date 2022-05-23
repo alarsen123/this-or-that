@@ -1,16 +1,20 @@
-<h3 class="panel-heading">Items</h3>
+<h3 class="panel-heading">Standings</h3>
 
-<div *ngFor="let result of results;">
+<div *ngFor="let result of results">
 
-<div class="panel panel-default">
-    <!-- Default panel contents -->
-    <h4 class="panel-heading">
-    <a>{{result.item_name}}</a>
-    </h4>
-    <div class="panel-body">
-    <p>{{result.item_number_of_votes}}</p>
-    <p>{{result.item_percent_of_votes}}</p>
-    <p>{{result.item_rank}}</p>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <h4 class="panel-heading">
+        <p>{{result.item_name}}</p>
+        </h4>
+    
+        <!-- Table -->
+        <table class="table" style="font-size:10pt;">
+            <tbody>
+                <tr>
+                    <td>Number of Votes: <span>{{result.item_number_of_votes}}</span></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-</div>
+    </div>
