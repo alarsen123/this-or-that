@@ -6,3 +6,4 @@ This or that survey website express server and db client
 - in another terminal, run <code>rundbClient</code> to enter the MongoDB shell
 - enter <code>load('createDB\\createAdminUser.js');</code> in the shell to create an admin user
 - enter <code>load('createDB\\createData.js');</code> in the shell to populate the data
+- enter <code>mongod --repair --dbpath .\db</code> in the command prompt if the database does not load correctly
