@@ -73,7 +73,11 @@ class App {
       this.Category.retrieveAllCategories(res);
     });
 
-    
+    const cors = require('cors');
+    this.expressApp.use(cors({
+      origin: '*',
+      methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+    }));
 
     this.expressApp.use('/', router);
 
