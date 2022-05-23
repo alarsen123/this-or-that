@@ -5,4 +5,5 @@ export interface ItemClass{
     item_number_of_votes: number;
     item_percent_of_votes: number;
     item_rank: number;
+    link: string;
 }
