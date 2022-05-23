@@ -37,6 +37,9 @@ var ItemModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
+    ItemModel.prototype.updateVote = function (response, filter) {
+        this.model.findOneAndUpdate({ "item_id": filter }, { $inc: { item_number_of_votes: 1 } });
+    };
     ItemModel.prototype.retrieveRandomQuestion = function (response) {
         var num_items = 20;
         var randomnum1 = Math.floor(Math.random() * num_items) + 1;

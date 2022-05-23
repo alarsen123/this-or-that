@@ -47,6 +47,12 @@ class ItemModel {
             response.json(itemArray)
         });
     }
+    // public updateVote(response:any, filter:Object){
+    //     this.model.findOneAndUpdate({"item_id": filter}, {$inc:{item_number_of_votes: 1}},{new: true}, 
+    //     function(err, itemArray) { 
+    //         response.json(itemArray)
+    //     });
+    // }
 
     public retrieveRandomQuestion(response:any){
         const num_items = 20
