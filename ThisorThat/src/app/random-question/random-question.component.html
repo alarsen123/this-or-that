@@ -1,8 +1,16 @@
-<h3 class="panel-heading">Random Question</h3>
+<h3 class="panel-heading" style="text-align: center;">Random Question</h3>
 
 <div *ngFor="let result of results"class="panel panel-default">
     <!-- Default panel contents -->
-    <h4 class="panel-heading">
-        <a>{{result.item_name}}</a>
-    </h4>
+    <div class="row">
+        <div class="card h-100">
+            <div class="card text-center" style="width: 40rem;">
+                <div class="card-body">
+                <img src= {{result.link}} class="card-img-top" alt="...">
+                <h5 class="card-title">{{result.item_name}}</h5>
+                <a href="/standings" class="btn btn-primary">Vote</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
