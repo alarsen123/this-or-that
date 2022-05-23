@@ -15,7 +15,7 @@ export class DailyQuestionComponent implements OnInit {
   constructor(private route: ActivatedRoute, private dailyQuestionService: ThisorthatService) { }
 
   ngOnInit(): void {
-    this.dailyQuestionService.getRandomQuestion().subscribe((result: any) => 
+    this.dailyQuestionService.getDailyQuestion().subscribe((result: any) => 
     {
       this.results = result;
       console.log('result' + JSON.stringify(result));

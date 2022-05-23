@@ -52,6 +52,11 @@ var App = /** @class */ (function () {
             res.header("Acces-Control-Allow-Origin", "http://localhost:4200");
             _this.Items.retrieveRandomQuestion(res);
         });
+        router.get("/app/dailyQuestion/", function (req, res) {
+            console.log('Query A daily question');
+            res.header("Acces-Control-Allow-Origin", "http://localhost:4200");
+            _this.Items.retriveDailyQuestion(res);
+        });
         router.post("/app/Items/", function (req, res) {
             var id = crypto.randomBytes(16).toString("hex");
             res.header("Acces-Control-Allow-Origin", "http://localhost:4200");
@@ -69,12 +74,12 @@ var App = /** @class */ (function () {
             res.header("Acces-Control-Allow-Origin", "http://localhost:4200");
             _this.Category.retrieveAllCategories(res);
         });
-        router.put("/app/Item/vote/:item_id", function (req, res) {
-            var id = req.params.item_id;
-            console.log("Update a single item with id:" + id);
-            res.header("Acces-Control-Allow-Origin", "http://localhost:4200");
-            _this.Items.updateVote(res, id);
-        });
+        // router.put("/app/Item/vote/:item_id", (req,res) => {
+        //   var id = req.params.item_id;
+        //   console.log("Update a single item with id:" + id);
+        //   res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+        //   this.Items.updateVote(res,id);
+        // });
         var cors = require('cors');
         this.expressApp.use(cors({
             origin: '*',

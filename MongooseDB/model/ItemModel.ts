@@ -70,6 +70,13 @@ class ItemModel {
         });
     }
 
+    public retriveDailyQuestion(response:any){
+        var query = this.model.find({$or:[{"item_id": 5}, {"item_id": 10}]})
+        query.exec((err,itemArray)=>{
+            response.json(itemArray)
+        });
+    }
+
       
     public retrieveAllItems(response:any){
         var query = this.model.find({});

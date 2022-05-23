@@ -61,6 +61,12 @@ class App {
       this.Items.retrieveRandomQuestion(res);
     });
 
+    router.get("/app/dailyQuestion/" , (req,res) => {
+      console.log('Query A daily question');
+      res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+      this.Items.retriveDailyQuestion(res);
+    });
+
     router.post("/app/Items/",(req,res) => {
       const id = crypto.randomBytes(16).toString("hex");
       res.header("Acces-Control-Allow-Origin", "http://localhost:4200")

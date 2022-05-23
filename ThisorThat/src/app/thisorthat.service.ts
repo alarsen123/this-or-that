@@ -36,4 +36,7 @@ export class ThisorthatService {
    getCategories() {
     return this.http.get<CategoryClass[]>(this.hostUrl +"/app/categories" );
    }
+   getDailyQuestion(){
+     return this.http.get<ItemClass[]>(this.hostUrl + "/app/dailyQuestion")
+   }
 }

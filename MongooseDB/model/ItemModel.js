@@ -37,9 +37,12 @@ var ItemModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
-    ItemModel.prototype.updateVote = function (response, filter) {
-        this.model.findOneAndUpdate({ "item_id": filter }, { $inc: { item_number_of_votes: 1 } });
-    };
+    // public updateVote(response:any, filter:Object){
+    //     this.model.findOneAndUpdate({"item_id": filter}, {$inc:{item_number_of_votes: 1}},{new: true}, 
+    //     function(err, itemArray) { 
+    //         response.json(itemArray)
+    //     });
+    // }
     ItemModel.prototype.retrieveRandomQuestion = function (response) {
         var num_items = 20;
         var randomnum1 = Math.floor(Math.random() * num_items) + 1;
@@ -51,6 +54,12 @@ var ItemModel = /** @class */ (function () {
             }
         }
         var query = this.model.find({ $or: [{ "item_id": randomnum1 }, { "item_id": randomnum2 }] });
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
+    ItemModel.prototype.retriveDailyQuestion = function (response) {
+        var query = this.model.find({ $or: [{ "item_id": 5 }, { "item_id": 10 }] });
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
