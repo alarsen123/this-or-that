@@ -1,4 +1,4 @@
-<h3 class="panel-heading">Standings</h3>
+<h3 class="panel-heading text-center" >Standings</h3>
 
 <div *ngFor="let result of results">
 
@@ -13,6 +13,7 @@
             <tbody>
                 <tr>
                     <td>Number of Votes: <span>{{result.item_number_of_votes}}</span></td>
+                    <td>Item rank: <span>{{result.item_rank}}</span></td>
                 </tr>
             </tbody>
         </table>

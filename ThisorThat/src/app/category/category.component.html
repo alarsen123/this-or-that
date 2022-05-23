@@ -1,19 +1,19 @@
-<h3 class="panel-heading">Categories</h3>
+<h3 class="panel-heading text-center">Categories</h3>
 
 <div *ngFor="let result of results; let i = index">
 
 <div class="panel panel-default">
     <!-- Default panel contents -->
-    <h4 class="panel-heading">
-    <a routerLink={{link(i)}} routerLinkActive="active">{{result.category_name}}</a>
+    <h4 class="panel-heading text-center font-size: 20pt">
+    <p>{{result.category_name}}</p>
     </h4>
     <!-- Table -->
-    <table class="table" style="font-size:10pt;">
+    <!-- <table class="table" style="font-size:10pt;">
         <tbody>
             <tr>
-                <td align="right"><span class="badge"></span></td>
+                <td style="text-align: center;"><span class="badge"></span></td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
 </div>
 </div>

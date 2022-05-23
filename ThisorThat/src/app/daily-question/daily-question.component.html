@@ -1,16 +1,16 @@
-<h3 class="panel-heading">Daily Question</h3>
-
-<div *ngFor="let result of results">
-
-<div class="panel panel-default">
-    <!-- Default panel contents -->
-    <h4 class="panel-heading">
-    <a>{{result.item_name}}</a>
-    </h4>
-    <div class="panel-body">
-    <p>{{result.item_number_of_votes}}</p>
-    <p>{{result.item_percent_of_votes}}</p>
-    <p>{{result.item_rank}}</p>
+<div class="container">
+    <div class="col-xs-12 text-center">
+      <h1>Daily Question</h1>
     </div>
-</div>
-</div>
+  </div>
+
+    <!-- Default contents -->
+    <div class="row">
+      <div class="col-6 card" *ngFor="let result of results">
+          <div class="card text-center">
+              <img src= {{result.link}} class="card-img-top" alt="..." height="600px">
+              <h5 class="card-title">{{result.item_name}}</h5>
+              <a href="/standings" class="btn btn-primary">Vote</a>   
+          </div>
+    </div>
+  </div>
