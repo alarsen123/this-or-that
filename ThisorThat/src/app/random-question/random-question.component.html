@@ -5,17 +5,13 @@
     </div>
   </div>
 
-<div *ngFor="let result of results"class="panel panel-default">
-    <!-- Default panel contents -->
+    <!-- Default contents -->
     <div class="row">
-        <div class="card h-100">
-            <div class="card text-center" style="width: 40rem;">
-                <div class="card-body">
-                <img src= {{result.link}} class="card-img-top" alt="...">
-                <h5 class="card-title">{{result.item_name}}</h5>
-                <a href="/standings" class="btn btn-primary">Vote</a>
-                </div>
-            </div>
-        </div>
+      <div class="col-6 card" *ngFor="let result of results">
+          <div class="card text-center">
+              <img src= {{result.link}} class="card-img-top" alt="..." height="600px">
+              <h5 class="card-title">{{result.item_name}}</h5>
+              <a href="/standings" class="btn btn-primary">Vote</a>   
+          </div>
     </div>
-</div>
+  </div>
