@@ -22,4 +22,9 @@ export class DailyQuestionComponent implements OnInit {
     });
   }
 
+  vote(id:number, item:ItemClass): void{
+    const body = { title: 'Vote' };
+    this.dailyQuestionService.updateVote(id, item);
+  }
+
 }

@@ -37,6 +37,13 @@ export class ThisorthatService {
     return this.http.get<CategoryClass[]>(this.hostUrl +"/app/categories" );
    }
    getDailyQuestion(){
-     return this.http.get<ItemClass[]>(this.hostUrl + "/app/dailyQuestion")
+     return this.http.get<ItemClass[]>(this.hostUrl + "/app/dailyQuestion");
+   }
+
+   updateVote(id:number, item:ItemClass){
+    const url = this.hostUrl + "/app/Items/vote/" + id;
+    const data = JSON.stringify(item);
+    return this.http.put(url, data).subscribe();
+    //return this.http.put<any>(this.hostUrl + "/app/Items/vote/" + id);
    }
 }

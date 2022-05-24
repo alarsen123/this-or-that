@@ -19,4 +19,9 @@ export class RandomQuestionComponent implements OnInit {
     });
   }
 
+  vote(id:number, item:ItemClass): void{
+    const body = { title: 'Vote' };
+    this.apiService.updateVote(id, item);
+  }
+
 }

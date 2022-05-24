@@ -10,7 +10,7 @@
           <div class="card text-center">
               <img src= {{result.link}} class="card-img-top" alt="..." height="600px">
               <h5 class="card-title">{{result.item_name}}</h5>
-              <a href="/standings" class="btn btn-primary">Vote</a>   
+              <a href="/standings" class="btn btn-primary" (click)="vote(result.item_id, result)">Vote</a> 
           </div>
     </div>
   </div>
