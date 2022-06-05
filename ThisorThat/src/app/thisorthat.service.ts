@@ -8,7 +8,8 @@ import { CategoryClass } from './category-class';
 })
 export class ThisorthatService {
 
-  hostUrl:string = 'http://localhost:8080';
+  //hostUrl:string = 'http://localhost:8080';
+  hostUrl:string = 'https://thisorthatsu.azurewebsites.net';
 
   constructor(private http: HttpClient) {
 
