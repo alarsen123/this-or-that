@@ -20,42 +20,17 @@ class UserModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                user_id: String,
-                username: {type: String, required: true, unique: true},
-                hashed_pwd: String,
+                user_id: {type: String, required: true, unique: true},
                 age: Number,
                 email: String,
                 phone: String
             }, {collection: 'users'}
         );
     }
+
     public createModel(): void {
         this.model = mongooseConnection.model<IUserModel>("users", this.schema);
-    }
-
-    public hashPW(pwd) {
-        return crypto.createHash('sha256').update(pwd).digest('base64').toString();
-    }
-
-    public login(req, res) {
-        this.model.findOne({username: req.body.username}).exec( function(err, user) {
-            if (!user) {
-                err = 'User Not Found';
-            } 
-            else if (user.hashed_pwd === hashPW(req.body.password.toString())) {
-                req.session.user = user.id;
-                req.session.username = user.username;
-            } 
-            else {
-                err = 'Authentication failed';
-            }
-            if (err) {
-                req.session.regenerate( function () {
-                    res.redirect('/login');
-                })
-            }
-        } );
-    }        
+    }      
     
     public createUser(response:any, userObject: IUserModel){
         this.model.insertMany(userObject)
@@ -82,7 +57,3 @@ class UserModel {
     }
 }
 export {UserModel};
-
-function hashPW(pwd) {
-    return crypto.createHash('sha256').update(pwd).digest('base64').toString();
-}
