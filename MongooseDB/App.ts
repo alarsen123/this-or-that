@@ -1,8 +1,18 @@
-import * as express from 'express';
-import * as bodyParser from 'body-parser';
+import * as path from "path";
+import * as express from "express";
+import * as logger from "morgan";
+import * as mongodb from "mongodb";
+import * as url from "url";
+import * as bodyParser from "body-parser";
+import * as session from "express-session";
+import * as cookieParser from "cookie-parser";
 import {ItemModel} from './model/ItemModel';
 import {CategoryModel} from './model/CategoryModel';
+import { UserModel } from "./model/UserModel";
 import * as crypto from 'crypto';
+
+import GooglePassportObj from "./GooglePassport";
+import * as passport from "passport";
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -11,26 +21,83 @@ class App {
   public expressApp: express.Application;
   public Items:ItemModel;
   public Category:CategoryModel;
+  public User:UserModel;
+
+  public idGenerator: number;
+  public googlePassportObj: GooglePassportObj;
 
   //Run configuration methods on the Express instance.
   constructor() {
+    this.googlePassportObj = new GooglePassportObj();
+
     this.expressApp = express();
     this.middleware();
     this.routes();
+    this.idGenerator = 100;
     this.Items = new ItemModel();
     this.Category = new CategoryModel();
+    this.User = new UserModel();
   }
 
   // Configure Express middleware.
   private middleware(): void {
+    this.expressApp.use(logger('dev'));
     this.expressApp.use(bodyParser.json());
     this.expressApp.use(bodyParser.urlencoded({ extended: false }));
+    this.expressApp.use(session({ secret: 'keyboard cat' }));
+    this.expressApp.use(cookieParser());
+    this.expressApp.use(passport.initialize());
+    this.expressApp.use(passport.session());
+  }
+
+  private validateAuth(req, res, next): void {
+    if (req.isAuthenticated()) {
+      console.log(
+        "user is authenticated. username: " + req.user.username
+      );
+      return next();
+    }
+    console.log("user is not authenticated");
+    res.redirect("/");
   }
 
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
-    router.get("/app/Items/", (req,res) => {
+
+    router.get('/auth/google', 
+    passport.authenticate('google', {scope: ['profile']}));
+
+    router.get('/auth/google/callback', 
+    passport.authenticate('google', 
+      { failureRedirect: '/' }
+    ),
+    (req, res) => {
+      console.log("successfully authenticated user and returned to callback page.");
+      console.log("redirecting to /#/items");
+      res.redirect('/#/items');
+    } 
+  );
+
+    // Users
+    router.post("/app/users/", (req, res) => {
+      this.User.createUser(res, req.body);
+    });
+
+    router.get("/app/users/:userId/", async (req, res) => {
+      this.User.getUser(res, { userId: req.params.userId });
+    });
+
+    router.put("/app/users/", (req, res) => {
+      this.User.updateUser(res, req.body);
+    });
+
+    router.delete("/app/users/", (req, res) => {
+      this.User.deleteUser(res, req.body);
+    });
+  
+    // Items
+    router.get("/app/Items/", this.validateAuth, (req,res) => {
       console.log('Query All items');
       res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
       this.Items.retrieveAllItems(res);
