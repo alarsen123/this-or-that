@@ -3,6 +3,7 @@ exports.__esModule = true;
 exports.UserModel = void 0;
 var Mongoose = require("mongoose");
 var DataAccess_1 = require("./../DataAccess");
+var crypto = require("crypto");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
 var mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
 var UserModel = /** @class */ (function () {
@@ -23,13 +24,15 @@ var UserModel = /** @class */ (function () {
     UserModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("users", this.schema);
     };
+    UserModel.prototype.hashPW = function (pwd) {
+        return crypto.createHash('sha256').update(pwd).digest('base64').toString();
+    };
     UserModel.prototype.login = function (req, res) {
         this.model.findOne({ username: req.body.username }).exec(function (err, user) {
             if (!user) {
                 err = 'User Not Found';
             }
-            //else if (user.hashed_pwd === hashPW(req.body.password.toString())) {
-            else if (user.hashed_pwd === req.body.password.toString()) {
+            else if (user.hashed_pwd === hashPW(req.body.password.toString())) {
                 req.session.user = user.id;
                 req.session.username = user.username;
             }
@@ -62,3 +65,6 @@ var UserModel = /** @class */ (function () {
     return UserModel;
 }());
 exports.UserModel = UserModel;
+function hashPW(pwd) {
+    return crypto.createHash('sha256').update(pwd).digest('base64').toString();
+}

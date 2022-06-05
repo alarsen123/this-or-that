@@ -13,7 +13,6 @@ var GooglePassport = /** @class */ (function () {
             clientID: this.clientId,
             clientSecret: this.secretId,
             callbackURL: "/auth/google/callback"
-            // profileFields: ['id', 'displayName', 'emails']
         }, function (accessToken, refreshToken, profile, done) {
             console.log("inside new password google strategy");
             process.nextTick(function () {
@@ -21,7 +20,6 @@ var GooglePassport = /** @class */ (function () {
                 console.log("userId:" + profile.id);
                 console.log("displayName: " + profile.displayName);
                 console.log("retrieve all of the profile info needed");
-                // this.email = profile.emails[0].value;
                 return done(null, profile);
             });
         }));

@@ -2,6 +2,7 @@ import Mongoose = require("mongoose");
 import {DataAccess} from './../DataAccess';
 import {IUserModel} from '../interfaces/IUserModel';
 import {STATUS_CODES} from "http";
+import * as crypto from 'crypto';
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
@@ -32,13 +33,16 @@ class UserModel {
         this.model = mongooseConnection.model<IUserModel>("users", this.schema);
     }
 
+    public hashPW(pwd) {
+        return crypto.createHash('sha256').update(pwd).digest('base64').toString();
+    }
+
     public login(req, res) {
         this.model.findOne({username: req.body.username}).exec( function(err, user) {
             if (!user) {
                 err = 'User Not Found';
             } 
-            //else if (user.hashed_pwd === hashPW(req.body.password.toString())) {
-            else if (user.hashed_pwd === req.body.password.toString()) {
+            else if (user.hashed_pwd === hashPW(req.body.password.toString())) {
                 req.session.user = user.id;
                 req.session.username = user.username;
             } 
@@ -78,3 +82,7 @@ class UserModel {
     }
 }
 export {UserModel};
+
+function hashPW(pwd) {
+    return crypto.createHash('sha256').update(pwd).digest('base64').toString();
+}
