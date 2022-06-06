@@ -67,7 +67,9 @@ itemCollection.insert(
 		item_rank: 4,
 		link: "https://images.dailyhive.com/20210918180826/Ltd-Edition-Sushi.jpeg",
 		user_ids: [ 
-			null
+			{
+				user_id:106199271719982524571
+			}
 		]
 	}
 )
@@ -97,7 +99,9 @@ itemCollection.insert(
 		item_rank: 6,
 		link: "https://techcrunch.com/wp-content/uploads/2019/03/GettyImages-844016022.jpg",
 		user_ids: [ 
-			null
+			{
+				user_id:106199271719982524571
+			}
 		]
 	}
 )
@@ -283,7 +287,9 @@ itemCollection.insert(
 		item_rank: 19,
 		link: "https://www.apple.com/v/apple-events/home/u/images/meta/overview__bcphzsdb4fpu_og.png",
 		user_ids: [ 
-			null
+			{
+				user_id:106199271719982524571
+			}
 		]
 	}
 )
@@ -443,7 +449,15 @@ userCollection.insert(
 		email: "alarsen@seattleu.edu",
 		phone: null,
 		user_items : [
-			null
+			{
+				item_id: 4
+			},
+			{
+				item_id:19
+			},
+			{
+				item_id: 6
+			}
 		]
 	}
 )

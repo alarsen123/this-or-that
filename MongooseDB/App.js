@@ -108,7 +108,7 @@ var App = /** @class */ (function () {
             _this.User.deleteUser(res, req.body);
         });
         // Items
-        // router.get("/app/Items/", this.validateAuth, (req,res) => {
+        //router.get("/app/Items/", this.validateAuth, (req,res) => {
         router.get("/app/Items/", function (req, res) {
             console.log('Query All items');
             res.header("Acces-Control-Allow-Origin", "http://localhost:8080");
@@ -127,7 +127,6 @@ var App = /** @class */ (function () {
             _this.Items.retrieveAllItemsfromUniqueCategory(res, { category_id: id });
         });
         // Get items voted on by a specific user
-        //router.get("/app/Items/", this.validateAuth, (req,res) => {
         router.get("/app/Items/User/:user_id", function (req, res) {
             var id = req.params.user_id;
             console.log("Query All items from a unique user_id: " + id);

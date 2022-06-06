@@ -8,6 +8,7 @@ import { StandingComponent } from './standing/standing.component';
 import { RandomQuestionComponent } from './random-question/random-question.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'dailyquestion', component:DailyQuestionComponent},
   {path: 'standings', component:StandingComponent},
   {path: 'randomQuestion', component:RandomQuestionComponent},
-  {path: 'login', component:LoginComponent}
+  {path: 'login', component:LoginComponent},
+  {path: "profile", component:ProfileComponent}
 ];
 
 @NgModule({

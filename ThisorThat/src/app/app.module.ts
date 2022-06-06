@@ -11,6 +11,7 @@ import { ItemComponent } from './item/item.component';
 import { RandomQuestionComponent } from './random-question/random-question.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoginComponent } from './login/login.component';
     ItemComponent,
     RandomQuestionComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -58,7 +58,7 @@ class App {
       return next();
     }
     console.log("user is not authenticated");
-    res.redirect("/");
+    res.redirect("http://localhost:4200/");
   }
 
   // Configure API endpoints.
@@ -89,6 +89,10 @@ class App {
     router.get("/app/users/:user_id", async (req, res) => {
       console.log(req.params.user_id);
       this.User.getUser(res, { user_id: req.params.user_id });
+    });
+
+    router.get("app/user/", this.validateAuth, async (req, res) => {
+      this.User.getUser(res, {user_id:  passport.profile.id})
     });
 
     router.put("/app/users/", (req, res) => {
@@ -122,7 +126,7 @@ class App {
     });
 
     // Get items voted on by a specific user
-    router.get("/app/Items/User/:user_id" , (req,res) =>{
+    router.get("/app/Items/User/:user_id" , this.validateAuth, (req,res) =>{
       var id = req.params.user_id;
       console.log("Query All items from a unique user_id: " + id);
       res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
@@ -173,8 +177,9 @@ class App {
       this.Items.updateVote(res,id);
     });
 
+    
     // TODO: Use this if a user is logged in
-    router.put("/app/Items/vote/:item_id/:user_id", (req,res) => {
+    router.put("/app/Items/:item_id/vote/:user_id", this.validateAuth, (req,res) => {
       var item_id = req.params.item_id;
       var user_id = req.params.user_id;
       console.log("Update a single item with id: " + item_id + " as user: " + user_id);

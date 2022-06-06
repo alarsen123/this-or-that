@@ -10,7 +10,7 @@ import { UserClass } from '../user-class';
 })
 export class LoginComponent implements OnInit {
 
-  results: Array<UserClass>=[];
+  results: Array<any>=[];
 
   constructor(private route: ActivatedRoute, private loginService: ThisorthatService) { }
 
@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
       console.log('result' + JSON.stringify(result));
     });
   }
+
 
 }
 
