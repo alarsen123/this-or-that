@@ -75,9 +75,10 @@ class App {
       passport.authenticate('google', { failureRedirect: '/' }),
       (req, res) => {
         console.log("successfully authenticated user and returned to callback page.");
-        console.log("redirecting to /#/items");
-        res.redirect('/#/items');
-      } 
+        console.log("redirecting to /app/items");
+        //res.redirect('/#/Items');
+        res.redirect('http://localhost:4200/Items');
+      }
     );
 
     // Users
@@ -101,44 +102,44 @@ class App {
     //router.get("/app/Items/", this.validateAuth, (req,res) => {
     router.get("/app/Items/", (req,res) => {
       console.log('Query All items');
-      res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+      res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
       this.Items.retrieveAllItems(res);
     });
 
     router.get("/app/Items/:item_id" , (req,res) => {
         var id = req.params.item_id;
         console.log("Query single item with id:" + id);
-        res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+        res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
         this.Items.retrieveOneItem(res,{item_id:id})
     });
 
     router.get("/app/Items/Category/:category_id" , (req,res) =>{
         var id = req.params.category_id;
         console.log("Query All items from a unique category_id: " + id);
-        res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+        res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
         this.Items.retrieveAllItemsfromUniqueCategory(res,{category_id:id});
     });
 
     router.get("/app/standings/" , (req,res) => {
       console.log('Query Top 10 Most voted');
-      res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+      res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
       this.Items.retrieve10mostvoted(res);
     });
     router.get("/app/randomQuestion/" , (req,res) => {
       console.log('Query A random question');
-      res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+      res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
       this.Items.retrieveRandomQuestion(res);
     });
 
     router.get("/app/dailyQuestion/" , (req,res) => {
       console.log('Query A daily question');
-      res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+      res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
       this.Items.retriveDailyQuestion(res);
     });
 
     router.post("/app/Items/",(req,res) => {
       const id = crypto.randomBytes(16).toString("hex");
-      res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+      res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
       console.log(req.body);
         var jsonObj = req.body;
         this.Items.model.create([jsonObj], (err) => {
@@ -151,14 +152,14 @@ class App {
 
     router.get("/app/categories/" , (req,res) => {
       console.log('Query All categories');
-      res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+      res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
       this.Category.retrieveAllCategories(res);
     });
 
     router.put("/app/Items/vote/:item_id", (req,res) => {
       var id = req.params.item_id;
       console.log("Update a single item with id:" + id);
-      res.header("Acces-Control-Allow-Origin", "http://localhost:4200")
+      res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
       this.Items.updateVote(res,id);
     });
 

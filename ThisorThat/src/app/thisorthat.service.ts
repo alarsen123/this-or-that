@@ -8,8 +8,8 @@ import { CategoryClass } from './category-class';
 })
 export class ThisorthatService {
 
-  //hostUrl:string = 'http://localhost:8080';
-  hostUrl:string = 'https://thisorthatsu22.azurewebsites.net';
+  hostUrl:string = 'http://localhost:8080';
+  //hostUrl:string = 'https://thisorthatsu22.azurewebsites.net';
 
   constructor(private http: HttpClient) {
 
@@ -44,7 +44,11 @@ export class ThisorthatService {
    }
    
    getSSO() {
-    return this.http.get<ItemClass[]>(this.hostUrl + "/auth/google");
+    return this.http.get<any>(this.hostUrl + "/auth/google");
+   }
+
+   getSSOCallback() {
+    return this.http.get<any>(this.hostUrl + "/auth/google/callback");
    }
 
    updateVote(id:number, item:ItemClass){

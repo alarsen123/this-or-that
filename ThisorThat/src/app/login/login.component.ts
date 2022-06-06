@@ -15,16 +15,14 @@ export class LoginComponent implements OnInit {
   constructor(private route: ActivatedRoute, private loginService: ThisorthatService) { }
 
   ngOnInit(): void {
+  }
+
+  login(): void {
     this.loginService.getSSO().subscribe((result: any) => 
     {
       this.results = result;
       console.log('result' + JSON.stringify(result));
     });
-  }
-
-  login(): void{
-    const body = { title: 'Google Login' };
-    this.loginService.getSSO();
   }
 
 }
