@@ -13,6 +13,7 @@ import * as crypto from 'crypto';
 
 import GooglePassportObj from "./GooglePassport";
 import * as passport from "passport";
+import { userInfo } from "os";
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -29,7 +30,6 @@ class App {
   //Run configuration methods on the Express instance.
   constructor() {
     this.googlePassportObj = new GooglePassportObj();
-
     this.expressApp = express();
     this.middleware();
     this.routes();
@@ -91,8 +91,15 @@ class App {
       this.User.getUser(res, { user_id: req.params.user_id });
     });
 
-    router.get("/app/user/", this.validateAuth, async (req, res) => {
-      this.User.getUser(res, {user_id:  passport.profile.id})
+    // router.get("/app/users/", this.validateAuth, async (req, res) => {
+    router.get("/app/users/", async (req, res) => {
+      if (this.validateAuth) {
+        console.log(this.googlePassportObj.userId);
+        this.User.getUser(res, {user_id: this.googlePassportObj.userId})
+      }
+      else {
+        this.User.getUser(res, {user_id: "106199271719982524571"})
+      }
     });
 
   
@@ -128,7 +135,8 @@ class App {
     });
 
     // Get items voted on by a specific user
-    router.get("/app/Items/User/:user_id" , this.validateAuth, (req,res) =>{
+    // router.get("/app/Items/User/:user_id" , this.validateAuth, (req,res) =>{
+    router.get("/app/Items/user/:user_id", (req,res) =>{
       var id = req.params.user_id;
       console.log("Query All items from a unique user_id: " + id);
       res.header("Acces-Control-Allow-Origin", "http://localhost:8080")
@@ -181,7 +189,8 @@ class App {
 
     
     // TODO: Use this if a user is logged in
-    router.put("/app/Items/:item_id/vote/:user_id", this.validateAuth, (req,res) => {
+    // router.put("/app/Items/:item_id/vote/:user_id", this.validateAuth, (req,res) => {
+    router.put("/app/Items/:item_id/vote/:user_id", (req,res) => {
       var item_id = req.params.item_id;
       var user_id = req.params.user_id;
       console.log("Update a single item with id: " + item_id + " as user: " + user_id);

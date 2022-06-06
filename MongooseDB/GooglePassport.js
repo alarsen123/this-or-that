@@ -7,6 +7,7 @@ var GoogleStrategy = require('passport-google-oauth20-with-people-api').Strategy
 // Creates a Passport configuration for Google
 var GooglePassport = /** @class */ (function () {
     function GooglePassport() {
+        var _this = this;
         this.clientId = googleOauth2_1["default"].id;
         this.secretId = googleOauth2_1["default"].secret;
         passport.use(new GoogleStrategy({
@@ -18,6 +19,7 @@ var GooglePassport = /** @class */ (function () {
             process.nextTick(function () {
                 console.log('validating google profile:' + JSON.stringify(profile));
                 console.log("userId:" + profile.id);
+                _this.userId = profile.id;
                 console.log("displayName: " + profile.displayName);
                 console.log("retrieve all of the profile info needed");
                 return done(null, profile);

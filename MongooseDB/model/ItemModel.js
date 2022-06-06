@@ -33,8 +33,8 @@ var ItemModel = /** @class */ (function () {
         });
     };
     // Get all the items a user has voted on
-    ItemModel.prototype.retrieveAllItemsfromUniqueUser = function (response, item_id) {
-        var query = this.model.find(this.model.item_ids.includes(item_id));
+    ItemModel.prototype.retrieveAllItemsfromUniqueUser = function (response, filter) {
+        var query = this.model.find({}).where("user_ids")["in"]([filter.user_ids]);
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });

@@ -9,6 +9,7 @@ class GooglePassport {
 
     clientId: string;
     secretId: string;
+    userId: string;
      
     constructor() { 
         this.clientId = googleAppAuth.id;
@@ -24,6 +25,7 @@ class GooglePassport {
                 process.nextTick( () => {
                     console.log('validating google profile:' + JSON.stringify(profile));
                     console.log("userId:" + profile.id);
+                    this.userId = profile.id;
                     console.log("displayName: " + profile.displayName);
                     console.log("retrieve all of the profile info needed");
                     return done(null, profile);

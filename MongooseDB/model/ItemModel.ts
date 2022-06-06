@@ -44,8 +44,8 @@ class ItemModel {
     }
 
     // Get all the items a user has voted on
-    public retrieveAllItemsfromUniqueUser(response:any, item_id:Object){
-        var query = this.model.find(this.model.item_ids.includes(item_id));
+    public retrieveAllItemsfromUniqueUser(response:any, filter:any){
+        var query = this.model.find({}).where("user_ids").in([filter.user_ids]);
         query.exec((err,itemArray)=>{
             response.json(itemArray)
         });

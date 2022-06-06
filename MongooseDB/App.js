@@ -77,7 +77,7 @@ var App = /** @class */ (function () {
             return next();
         }
         console.log("user is not authenticated");
-        res.redirect("/");
+        res.redirect("http://localhost:4200/");
     };
     // Configure API endpoints.
     App.prototype.routes = function () {
@@ -98,6 +98,18 @@ var App = /** @class */ (function () {
             return __generator(this, function (_a) {
                 console.log(req.params.user_id);
                 this.User.getUser(res, { user_id: req.params.user_id });
+                return [2 /*return*/];
+            });
+        }); });
+        // router.get("/app/users/", this.validateAuth, async (req, res) => {
+        router.get("/app/users/", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                // // if (this.validateAuth) {
+                //   console.log(this.googlePassportObj.userId);
+                //   this.User.getUser(res, {user_id: this.googlePassportObj.userId})
+                // }
+                // else {
+                this.User.getUser(res, { user_id: "106199271719982524571" });
                 return [2 /*return*/];
             });
         }); });
@@ -127,7 +139,8 @@ var App = /** @class */ (function () {
             _this.Items.retrieveAllItemsfromUniqueCategory(res, { category_id: id });
         });
         // Get items voted on by a specific user
-        router.get("/app/Items/User/:user_id", function (req, res) {
+        // router.get("/app/Items/User/:user_id" , this.validateAuth, (req,res) =>{
+        router.get("/app/Items/user/:user_id", function (req, res) {
             var id = req.params.user_id;
             console.log("Query All items from a unique user_id: " + id);
             res.header("Acces-Control-Allow-Origin", "http://localhost:8080");
@@ -172,7 +185,8 @@ var App = /** @class */ (function () {
             _this.Items.updateVote(res, id);
         });
         // TODO: Use this if a user is logged in
-        router.put("/app/Items/vote/:item_id/:user_id", function (req, res) {
+        // router.put("/app/Items/:item_id/vote/:user_id", this.validateAuth, (req,res) => {
+        router.put("/app/Items/:item_id/vote/:user_id", function (req, res) {
             var item_id = req.params.item_id;
             var user_id = req.params.user_id;
             console.log("Update a single item with id: " + item_id + " as user: " + user_id);
