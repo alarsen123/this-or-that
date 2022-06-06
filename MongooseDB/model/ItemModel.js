@@ -17,7 +17,10 @@ var ItemModel = /** @class */ (function () {
             item_name: String,
             item_number_of_votes: Number,
             item_percent_of_votes: Number,
-            item_rank: Number
+            item_rank: Number,
+            user_ids: [{
+                    user_id: Number
+                }]
         }, { collection: 'items' });
     };
     ItemModel.prototype.createModel = function () {
@@ -25,6 +28,13 @@ var ItemModel = /** @class */ (function () {
     };
     ItemModel.prototype.retrieveAllItemsfromUniqueCategory = function (response, filter) {
         var query = this.model.find(filter);
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
+    // Get all the items a user has voted on
+    ItemModel.prototype.retrieveAllItemsfromUniqueUser = function (response, item_id) {
+        var query = this.model.find(this.model.item_ids.includes(item_id));
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
@@ -39,6 +49,11 @@ var ItemModel = /** @class */ (function () {
     };
     ItemModel.prototype.updateVote = function (response, filter) {
         this.model.findOneAndUpdate({ "item_id": filter }, { $inc: { item_number_of_votes: 1 } }, { "new": true }, function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
+    ItemModel.prototype.updateItemAfterVote = function (response, ids) {
+        this.model.findOneAndUpdate({ "item_id": ids[0] }, { $inc: { item_number_of_votes: 1 }, $push: { user_ids: ids[1] } }, { "new": true }, function (err, itemArray) {
             response.json(itemArray);
         });
     };

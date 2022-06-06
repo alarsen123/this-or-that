@@ -25,9 +25,13 @@ class ItemModel {
                 item_number_of_votes: Number,
                 item_percent_of_votes: Number,
                 item_rank: Number,
+                user_ids: [ {
+                    user_id: Number,
+                }],
             }, {collection: 'items'}
         );
     }
+
     public createModel(): void {
         this.model = mongooseConnection.model<IItemModel>("items", this.schema);
     }
@@ -38,6 +42,15 @@ class ItemModel {
             response.json(itemArray)
         });
     }
+
+    // Get all the items a user has voted on
+    public retrieveAllItemsfromUniqueUser(response:any, item_id:Object){
+        var query = this.model.find(this.model.item_ids.includes(item_id));
+        query.exec((err,itemArray)=>{
+            response.json(itemArray)
+        });
+    }
+
     public retrieve10mostvoted(response:any){
         var query = this.model.find({});
         query.sort({"item_number_of_votes": -1});
@@ -49,7 +62,14 @@ class ItemModel {
     }
 
     public updateVote(response:any, filter:Object){
-        this.model.findOneAndUpdate({"item_id": filter}, {$inc:{item_number_of_votes: 1}},{new: true}, 
+        this.model.findOneAndUpdate({"item_id": filter}, {$inc:{item_number_of_votes: 1}},{new: true},
+        function(err, itemArray) { 
+            response.json(itemArray)
+        });
+    }
+
+    public updateItemAfterVote(response:any, ids:Object){
+        this.model.findOneAndUpdate({"item_id": ids[0]}, {$inc:{item_number_of_votes: 1}, $push: {user_ids: ids[1]}},{new: true},
         function(err, itemArray) { 
             response.json(itemArray)
         });
@@ -77,8 +97,7 @@ class ItemModel {
             response.json(itemArray)
         });
     }
-
-      
+ 
     public retrieveAllItems(response:any){
         var query = this.model.find({});
         query.exec((err,itemArray)=>{
@@ -92,5 +111,6 @@ class ItemModel {
             response.json(itemArray)
         });
     }
+
 }
 export {ItemModel};

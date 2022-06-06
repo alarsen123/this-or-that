@@ -3,6 +3,7 @@ import {DataAccess} from './../DataAccess';
 import {IUserModel} from '../interfaces/IUserModel';
 import {STATUS_CODES} from "http";
 import * as crypto from 'crypto';
+import { ItemModel } from "./ItemModel";
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
@@ -21,9 +22,13 @@ class UserModel {
         this.schema = new Mongoose.Schema(
             {
                 user_id: {type: String, required: true, unique: true},
+                username: String,
                 age: Number,
                 email: String,
-                phone: String
+                phone: String,
+                user_items : [ {
+                    item_id: Number,
+                }],
             }, {collection: 'users'}
         );
     }
@@ -39,6 +44,7 @@ class UserModel {
     }
 
     public getUser(response:any, filter:Object) {
+        console.log(filter);
         this.model.findOne(filter)
             .then((result) => {response.json(result);})
             .catch((err) => {response.json(err);});
@@ -55,5 +61,13 @@ class UserModel {
             .then((result) => { response.json(result); })
             .catch((err) => { response.json(err) });
     }
+
+    public updateUserAfterVote(response:any, ids:Object){
+        this.model.findOneAndUpdate({"user_id": ids[1]}, {$push: {user_items: ids[0]}},{new: true},
+        function(err, itemArray) { 
+            response.json(itemArray)
+        });
+    }
+
 }
 export {UserModel};

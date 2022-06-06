@@ -13,9 +13,13 @@ var UserModel = /** @class */ (function () {
     UserModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
             user_id: { type: String, required: true, unique: true },
+            username: String,
             age: Number,
             email: String,
-            phone: String
+            phone: String,
+            user_items: [{
+                    item_id: Number
+                }]
         }, { collection: 'users' });
     };
     UserModel.prototype.createModel = function () {
@@ -26,6 +30,7 @@ var UserModel = /** @class */ (function () {
             .then(function (result) { response.json(result); })["catch"](function (err) { response.json(err); });
     };
     UserModel.prototype.getUser = function (response, filter) {
+        console.log(filter);
         this.model.findOne(filter)
             .then(function (result) { response.json(result); })["catch"](function (err) { response.json(err); });
     };
@@ -36,6 +41,11 @@ var UserModel = /** @class */ (function () {
     UserModel.prototype.deleteUser = function (response, userObject) {
         this.model.deleteOne(userObject)
             .then(function (result) { response.json(result); })["catch"](function (err) { response.json(err); });
+    };
+    UserModel.prototype.updateUserAfterVote = function (response, ids) {
+        this.model.findOneAndUpdate({ "user_id": ids[1] }, { $push: { user_items: ids[0] } }, { "new": true }, function (err, itemArray) {
+            response.json(itemArray);
+        });
     };
     return UserModel;
 }());

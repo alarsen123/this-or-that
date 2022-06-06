@@ -94,9 +94,10 @@ var App = /** @class */ (function () {
         router.post("/app/users/", function (req, res) {
             _this.User.createUser(res, req.body);
         });
-        router.get("/app/users/:userId/", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        router.get("/app/users/:user_id", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.User.getUser(res, { userId: req.params.userId });
+                console.log(req.params.user_id);
+                this.User.getUser(res, { user_id: req.params.user_id });
                 return [2 /*return*/];
             });
         }); });
@@ -107,7 +108,7 @@ var App = /** @class */ (function () {
             _this.User.deleteUser(res, req.body);
         });
         // Items
-        //router.get("/app/Items/", this.validateAuth, (req,res) => {
+        // router.get("/app/Items/", this.validateAuth, (req,res) => {
         router.get("/app/Items/", function (req, res) {
             console.log('Query All items');
             res.header("Acces-Control-Allow-Origin", "http://localhost:8080");
@@ -124,6 +125,14 @@ var App = /** @class */ (function () {
             console.log("Query All items from a unique category_id: " + id);
             res.header("Acces-Control-Allow-Origin", "http://localhost:8080");
             _this.Items.retrieveAllItemsfromUniqueCategory(res, { category_id: id });
+        });
+        // Get items voted on by a specific user
+        //router.get("/app/Items/", this.validateAuth, (req,res) => {
+        router.get("/app/Items/User/:user_id", function (req, res) {
+            var id = req.params.user_id;
+            console.log("Query All items from a unique user_id: " + id);
+            res.header("Acces-Control-Allow-Origin", "http://localhost:8080");
+            _this.Items.retrieveAllItemsfromUniqueUser(res, id);
         });
         router.get("/app/standings/", function (req, res) {
             console.log('Query Top 10 Most voted');
@@ -162,6 +171,15 @@ var App = /** @class */ (function () {
             console.log("Update a single item with id:" + id);
             res.header("Acces-Control-Allow-Origin", "http://localhost:8080");
             _this.Items.updateVote(res, id);
+        });
+        // TODO: Use this if a user is logged in
+        router.put("/app/Items/vote/:item_id/:user_id", function (req, res) {
+            var item_id = req.params.item_id;
+            var user_id = req.params.user_id;
+            console.log("Update a single item with id: " + item_id + " as user: " + user_id);
+            res.header("Acces-Control-Allow-Origin", "http://localhost:8080");
+            _this.Items.updateItemAfterVote(res, [item_id, user_id]);
+            _this.User.updateUserAfterVote(res, [item_id, user_id]);
         });
         var cors = require('cors');
         this.expressApp.use(cors({
