@@ -2,8 +2,6 @@
 
 /Mocha
 /mongoDB
-/MongooseDB/createDB
 /MongooseDB/db
 /MongooseDB/node_modules
 /node_modules
-/ThisorThat
