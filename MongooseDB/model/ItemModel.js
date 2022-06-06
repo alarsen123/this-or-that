@@ -73,7 +73,7 @@ var ItemModel = /** @class */ (function () {
         });
     };
     ItemModel.prototype.retriveDailyQuestion = function (response) {
-        var query = this.model.find({ $or: [{ "item_id": 5 }, { "item_id": 10 }] });
+        var query = this.model.find({ $or: [{ "item_id": 6 }, { "item_id": 11 }] });
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });

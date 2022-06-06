@@ -98,7 +98,7 @@ class App {
         this.User.getUser(res, {user_id: this.googlePassportObj.userId})
       }
       else {
-        this.User.getUser(res, {user_id: "106199271719982524571"})
+        this.User.getUser(res, {user_id: "1"})
       }
     });
 
@@ -171,7 +171,7 @@ class App {
             console.log('object creation failed');
           }
         });
-        res.send('{"id":"' + id + '"}');
+        res.send(req.body);
     });
 
     router.get("/app/categories/" , (req,res) => {

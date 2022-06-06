@@ -77,6 +77,6 @@ export class ThisorthatService {
      //return this.http.get<ItemClass[]>( "/app/Items/User/:user_id");
    }
    getUserId(){
-     return this.http.get<UserClass>(this.hostUrl + "/app/user");
+     return this.http.get<UserClass[]>(this.hostUrl + "/app/users/");
    }
 }
