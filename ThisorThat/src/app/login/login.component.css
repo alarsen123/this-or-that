@@ -2,16 +2,9 @@
 
 .container{
     position: relative;
-    width: 300px;
+    width: 200px;
     height: 200px;
     padding-top: 100px;
 }
 
-.button{
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
 
