@@ -91,9 +91,11 @@ class App {
       this.User.getUser(res, { user_id: req.params.user_id });
     });
 
-    router.get("app/user/", this.validateAuth, async (req, res) => {
+    router.get("/app/user/", this.validateAuth, async (req, res) => {
       this.User.getUser(res, {user_id:  passport.profile.id})
     });
+
+  
 
     router.put("/app/users/", (req, res) => {
       this.User.updateUser(res, req.body);
