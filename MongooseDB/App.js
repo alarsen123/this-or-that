@@ -109,7 +109,7 @@ var App = /** @class */ (function () {
                     this.User.getUser(res, { user_id: this.googlePassportObj.userId });
                 }
                 else {
-                    this.User.getUser(res, { user_id: "106199271719982524571" });
+                    this.User.getUser(res, { user_id: "1" });
                 }
                 return [2 /*return*/];
             });

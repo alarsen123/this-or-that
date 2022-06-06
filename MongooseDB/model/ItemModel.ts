@@ -92,7 +92,7 @@ class ItemModel {
     }
 
     public retriveDailyQuestion(response:any){
-        var query = this.model.find({$or:[{"item_id": 5}, {"item_id": 10}]})
+        var query = this.model.find({$or:[{"item_id": 6}, {"item_id": 11}]})
         query.exec((err,itemArray)=>{
             response.json(itemArray)
         });

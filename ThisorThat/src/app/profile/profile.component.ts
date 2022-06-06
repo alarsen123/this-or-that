@@ -19,6 +19,9 @@ export class ProfileComponent implements OnInit {
     {
       console.log('result' + JSON.stringify(result));
       this.results = result;
+      if(!Array.isArray(result)) {
+        this.results = [result]
+      } 
     });
   }
 

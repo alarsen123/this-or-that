@@ -8,5 +8,8 @@ interface IItemModel extends Mongoose.Document {
     item_percent_of_votes: number;
     item_rank: number;
     link: string;
+    user_ids: [ {
+        user_id: number;
+    }];
 }
 export {IItemModel};

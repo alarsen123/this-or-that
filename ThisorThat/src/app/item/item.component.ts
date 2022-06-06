@@ -18,7 +18,7 @@ export class ItemComponent implements OnInit {
     this.itemService.getItems().subscribe( (result: ItemClass[]) => 
     {
       console.log('result' + JSON.stringify(result));
-      this.results = result;
+      this.results = result; 
     });
   }
 
