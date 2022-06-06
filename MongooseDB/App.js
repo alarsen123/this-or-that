@@ -83,8 +83,8 @@ var App = /** @class */ (function () {
     App.prototype.routes = function () {
         var _this = this;
         var router = express.Router();
-        router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
-        router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
+        router.get('/auth/google/', passport.authenticate('google', { scope: ['profile'] }));
+        router.get('/auth/google/callback/', passport.authenticate('google', { failureRedirect: '/' }), function (req, res) {
             console.log("successfully authenticated user and returned to callback page.");
             console.log("redirecting to /#/items");
             res.redirect('/#/items');

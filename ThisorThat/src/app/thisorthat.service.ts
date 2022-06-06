@@ -9,7 +9,7 @@ import { CategoryClass } from './category-class';
 export class ThisorthatService {
 
   //hostUrl:string = 'http://localhost:8080';
-  hostUrl:string = 'https://thisorthatsu.azurewebsites.net';
+  hostUrl:string = 'https://thisorthatsu22.azurewebsites.net';
 
   constructor(private http: HttpClient) {
 
@@ -18,6 +18,7 @@ export class ThisorthatService {
    getItems() {
      return this.http.get<ItemClass[]>(this.hostUrl +"/app/Items" );
    }
+
    getItem(id:number){
      return this.http.get<any>(this.hostUrl + "/app/Items/" + id);
    }
@@ -37,8 +38,13 @@ export class ThisorthatService {
    getCategories() {
     return this.http.get<CategoryClass[]>(this.hostUrl +"/app/categories" );
    }
-   getDailyQuestion(){
+
+   getDailyQuestion() {
      return this.http.get<ItemClass[]>(this.hostUrl + "/app/dailyQuestion");
+   }
+   
+   getSSO() {
+    return this.http.get<ItemClass[]>(this.hostUrl + "/auth/google");
    }
 
    updateVote(id:number, item:ItemClass){

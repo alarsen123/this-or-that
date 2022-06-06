@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ThisorthatService } from '../thisorthat.service';
+import { UserClass } from '../user-class';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  results: Array<UserClass>=[];
+
+  constructor(private route: ActivatedRoute, private loginService: ThisorthatService) { }
 
   ngOnInit(): void {
+    this.loginService.getSSO().subscribe((result: any) => 
+    {
+      this.results = result;
+      console.log('result' + JSON.stringify(result));
+    });
+  }
+
+  login(): void{
+    const body = { title: 'Google Login' };
+    this.loginService.getSSO();
   }
 
 }
