@@ -104,12 +104,13 @@ var App = /** @class */ (function () {
         // router.get("/app/users/", this.validateAuth, async (req, res) => {
         router.get("/app/users/", function (req, res) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                // // if (this.validateAuth) {
-                //   console.log(this.googlePassportObj.userId);
-                //   this.User.getUser(res, {user_id: this.googlePassportObj.userId})
-                // }
-                // else {
-                this.User.getUser(res, { user_id: "106199271719982524571" });
+                if (this.validateAuth) {
+                    console.log(this.googlePassportObj.userId);
+                    this.User.getUser(res, { user_id: this.googlePassportObj.userId });
+                }
+                else {
+                    this.User.getUser(res, { user_id: "106199271719982524571" });
+                }
                 return [2 /*return*/];
             });
         }); });
@@ -171,7 +172,7 @@ var App = /** @class */ (function () {
                     console.log('object creation failed');
                 }
             });
-            res.send('{"id":"' + id + '"}');
+            res.send(req.body);
         });
         router.get("/app/categories/", function (req, res) {
             console.log('Query All categories');

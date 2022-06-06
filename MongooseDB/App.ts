@@ -171,7 +171,7 @@ class App {
             console.log('object creation failed');
           }
         });
-        res.send('{"id":"' + id + '"}');
+        res.send(req.body);
     });
 
     router.get("/app/categories/" , (req,res) => {
