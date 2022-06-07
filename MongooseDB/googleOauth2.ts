@@ -1,6 +1,6 @@
 class googleOauth2 {
-    static id: string = '490288694305-6eg1vso8v5h30e9n73ash8eg14ovjrj5.apps.googleusercontent.com';
-    static secret:string = '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';
+    static id: string = '82705622081-1k269tp6ctk6bps4ph0ai8pf54f6dre5.apps.googleusercontent.com';
+    static secret:string = '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';
     
 }
 export default googleOauth2;
